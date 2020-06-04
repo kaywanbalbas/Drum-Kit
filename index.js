@@ -6,14 +6,14 @@ for (var i = 0; i < numButtons; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     var buttonInnerHTML = this.innerHTML;
     playSound(buttonInnerHTML);
-    console.log(event);
+    animateButton(buttonInnerHTML);
   });
 }
 
 // detects input from keyboard using keydown event
 document.addEventListener("keydown", function(event) {
   playSound(event.key);
-  console.log(event);
+  animateButton(event.key);
 });
 
 // plays corresponding drum audio given user input
@@ -59,5 +59,14 @@ function playSound(key) {
       console.log(buttonInnerHTML);
       break;
   }
+
+}
+
+function animateButton(key) {
+  var activeButton = document.querySelector("." + key);
+  activeButton.classList.add("pressed");
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100);
 
 }
